@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d329b5d4cd3d9350f0b71996755bbcd8",
+    "content-hash": "f6f5aa52934e8f306463debd6bd4642b",
     "packages": [
         {
             "name": "algo26-matthias/idna-convert",
@@ -57,29 +57,23 @@
         },
         {
             "name": "apache-solr-for-typo3/solr",
-            "version": "9.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/TYPO3-Solr/ext-solr.git",
-                "reference": "628b3faa22dfa95ce563caf73e8549960e9a667c"
-            },
+            "version": "dev-master",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/TYPO3-Solr/ext-solr/zipball/628b3faa22dfa95ce563caf73e8549960e9a667c",
-                "reference": "628b3faa22dfa95ce563caf73e8549960e9a667c",
-                "shasum": ""
+                "type": "path",
+                "url": "packages/ext-solr",
+                "reference": "437b5618ff0d716f0af3aebde5b0bbe6f0c6b759"
             },
             "require": {
-                "php": ">=7.0.0",
+                "php": ">=7.2.0",
                 "solarium/solarium": "~4.2.0",
-                "typo3/cms-backend": "^8.7.0 || ^9.5.0",
-                "typo3/cms-core": "^8.7.0 || ^9.5.0",
-                "typo3/cms-extbase": "^8.7.0 || ^9.5.0",
-                "typo3/cms-fluid": "^8.7.0 || ^9.5.0",
-                "typo3/cms-frontend": "^8.7.0 || ^9.5.0",
-                "typo3/cms-reports": "^8.7.0 || ^9.5.0",
-                "typo3/cms-scheduler": "^8.7.0 || ^9.5.0",
-                "typo3/cms-tstemplate": "^8.7.0 || ^9.5.0"
+                "typo3/cms-backend": "^9.5.0",
+                "typo3/cms-core": "^9.5.0",
+                "typo3/cms-extbase": "^9.5.0",
+                "typo3/cms-fluid": "^9.5.0",
+                "typo3/cms-frontend": "^9.5.0",
+                "typo3/cms-reports": "^9.5.0",
+                "typo3/cms-scheduler": "^9.5.0",
+                "typo3/cms-tstemplate": "^9.5.0"
             },
             "replace": {
                 "apache-solr-for-typo3/solrfluid": "*",
@@ -92,7 +86,7 @@
             "type": "typo3-cms-extension",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "9.0.x-dev"
+                    "dev-master": "10.0.x-dev"
                 },
                 "typo3/cms": {
                     "extension-key": "solr",
@@ -108,7 +102,24 @@
                     "ApacheSolrForTypo3\\Solr\\": "Classes/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "ApacheSolrForTypo3\\Solr\\Tests\\": "Tests/",
+                    "TYPO3\\CMS\\Core\\Tests\\": ".Build/Web/typo3/sysext/core/Tests/"
+                }
+            },
+            "scripts": {
+                "post-autoload-dump": [
+                    "mkdir -p .Build/Web/typo3conf/ext/",
+                    "[ -L .Build/Web/typo3conf/ext/solr ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/solr"
+                ],
+                "extension-create-libs": [
+                    "@composer install -d Resources/Private/Php/ComposerLibraries"
+                ],
+                "extension-build": [
+                    "@extension-create-libs"
+                ]
+            },
             "license": [
                 "GPL-3.0-or-later"
             ],
@@ -127,7 +138,13 @@
                 "solr",
                 "typo3"
             ],
-            "time": "2019-03-06T12:19:56+00:00"
+            "support": {
+                "email": "typo3-project-solr@lists.typo3.org",
+                "issues": "https://github.com/TYPO3-Solr/ext-solr/issues",
+                "forum": "http://forum.typo3.org/index.php/f/53/",
+                "wiki": "https://forge.typo3.org/projects/extension-solr/wiki",
+                "source": "https://github.com/TYPO3-Solr/ext-solr"
+            }
         },
         {
             "name": "apache-solr-for-typo3/tika",
@@ -4962,6 +4979,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "apache-solr-for-typo3/solr": 20,
         "dkd/apache-solr-for-typo3-sitepackage": 20
     },
     "prefer-stable": false,

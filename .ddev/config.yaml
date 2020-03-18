@@ -13,6 +13,13 @@ mariadb_version: "10.2"
 nfs_mount_enabled: false
 provider: default
 hooks:
+# todo:
+# * clone EXT:solr* into packages folder properly. Must check if repos already exists.
+# * provide editorconfig
+# * evaluate if we need some Version-matrix (PHP,TYPO3,EXT:SOLR and Apache Solr) and how to ahive this properly and comfortable.
+  pre-start:
+    - exec-host: bash -c 'git clone git@github.com:TYPO3-Solr/ext-solr.git packages/ext-solr'
+#    - exec-host: bash -c ./.ddev/commands/host/clone-ext-solr
   post-start:
   - exec: composer install -d /var/www/html
   - exec: phpdismod xdebug

@@ -1,0 +1,31 @@
+version: '3.6'
+#
+#env_file:
+#  - ${DDEV_APPROOT}/.ddev/.solr-testingBuild/.env
+
+services:
+  solr-testing:
+    env_file:
+      - ${DDEV_APPROOT}/packages/.Test-Build/.env
+    build:
+      context: ${DDEV_APPROOT}
+      dockerfile: .ddev/.solr-testingBuild/Dockerfile
+      args:
+        APACHE_SOLR_TESTING_VERSION: 7.6
+        APACHE_SOLR_TESTING_PORT: 8999
+    restart: "unless-stopped"
+#    ports:
+#      - ${APACHE_SOLR_TESTING_PORT}
+#    network_mode: host
+  #    labels:
+#      com.ddev.site-name: ${DDEV_SITENAME}
+#      com.ddev.approot: $DDEV_APPROOT
+#      com.ddev.app-url: $DDEV_URL
+#    environment:
+#      - SOLR_PORT=${APACHE_SOLR_TESTING_PORT}
+#      - APACHE_SOLR_TESTING_PORT=${APACHE_SOLR_TESTING_PORT}
+  web:
+    links:
+      - solr-testing
+    env_file:
+      - ${DDEV_APPROOT}/packages/.Test-Build/.env

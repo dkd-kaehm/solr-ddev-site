@@ -35,7 +35,7 @@
         "typo3/cms-tstemplate": "^9.5",
         "typo3/cms-viewpage": "^9.5",
         "typo3/cms-filemetadata": "^9.5",
-        "apache-solr-for-typo3/solr": "^9.0.0",
+        "apache-solr-for-typo3/solr": "@dev",
         "apache-solr-for-typo3/tika": "^4.0.0",
         "typo3-console/composer-auto-commands": "^0.2",
         "typo3-console/composer-typo3-auto-install": "^0.2",

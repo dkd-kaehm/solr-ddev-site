@@ -1,0 +1,12 @@
+#!/bin/bash
+
+## Description: Clones all EXT:solr repositories in ./packages folder
+
+EXT_SOLR_PATH="packages/ext-solr"
+if [ ! -d $EXT_SOLR_PATH ]; then
+    echo "Cloning EXT:solr into "$EXT_SOLR_PATH
+    git clone git@github.com:TYPO3-Solr/ext-solr.git $EXT_SOLR_PATH 
+else
+  echo "EXT:solr repository exists, no needs to clone."
+fi
+
