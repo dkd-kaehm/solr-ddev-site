@@ -1,0 +1,29 @@
+#!/bin/bash
+
+## Description: run integration tests in web container (don't forget to run `ddev composer-update--lock` if ext-solr*'s composer.json changed)
+
+#echo "Cleaning public/typo3temp/var/tests path..."
+#rm -Rf public/typo3temp/var/tests
+
+INTEGRATION_PHPUINT_BOOTSTRAP="vendor/nimut/testing-framework/res/Configuration/FunctionalTestsBootstrap.php"
+PARATEST_PROCESSES=4
+
+INTEGRATION_PHPUINT_CONFIGURATION="public/typo3conf/ext/solr/Build/Test/IntegrationTests.xml"
+./vendor/bin/paratest \
+  --runner=WrapperRunner \
+  --processes=$PARATEST_PROCESSES \
+  --exclude-group=frontend \
+  --bootstrap=$INTEGRATION_PHPUINT_BOOTSTRAP \
+  --configuration=$INTEGRATION_PHPUINT_CONFIGURATION \
+  --colors "$@"
+
+INTEGRATION_PHPUINT_CONFIGURATION="public/typo3conf/ext/solr/Build/Test/IntegrationFrontendTests.xml"
+./vendor/bin/paratest \
+  --runner=WrapperRunner \
+  --processes=$PARATEST_PROCESSES \
+  --group=frontend \
+  --bootstrap=$INTEGRATION_PHPUINT_BOOTSTRAP \
+  --configuration=$INTEGRATION_PHPUINT_CONFIGURATION \
+  --colors "$@"
+
+# todo: rewrite and reuse the same cibuild.sh scripts from EXT:Solr*

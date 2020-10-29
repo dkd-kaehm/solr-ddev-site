@@ -6,6 +6,7 @@ services:
       context:
         ../packages/ext-solr/
       dockerfile: Docker/SolrServer/Dockerfile
+    image: typo3solr-ddev/ext-solr:latest-local
     user: root
     entrypoint: docker-overrides-entrypoint.sh
     command: solr-foreground
@@ -25,16 +26,11 @@ services:
       - HTTP_EXPOSE=8983
 
   solr-tests:
-    build:
-      context:
-        ../packages/ext-solr/
-      dockerfile: Docker/SolrServer/Dockerfile
+    image: typo3solr-ddev/ext-solr:latest-local
     user: root
     entrypoint: docker-overrides-entrypoint.sh
     command: solr-foreground
     restart: "no"
-#    expose:
-#      - "8985"
     ports:
       - 8985:8985
     volumes:
@@ -47,6 +43,60 @@ services:
       - SOLR_OVERRIDE_UID=$DDEV_UID
       - SOLR_OVERRIDE_GID=$DDEV_GID
       - SOLR_PORT=8985
+  # scale does not work within ddev. therefore use yaml and docker-compose features
+#  solr-tests-1: &solr-parallel-tests
+#    image: typo3solr-ddev/ext-solr:latest-local
+#    restart: "no"
+#    environment:
+#      - SOLR_PORT=8985
+#    volumes:
+#      - solr-tests-1:/var/solr
+#  solr-tests-2:
+#    <<: *solr-parallel-tests
+#    volumes:
+#      - solr-tests-2:/var/solr
+#  solr-tests-3:
+#    <<: *solr-parallel-tests
+#    volumes:
+#      - solr-tests-3:/var/solr
+#  solr-tests-4:
+#    <<: *solr-parallel-tests
+#    volumes:
+#      - solr-tests-4:/var/solr
+#  solr-tests-5:
+#    <<: *solr-parallel-tests
+#    volumes:
+#      - solr-tests-5:/var/solr
+#  solr-tests-6:
+#    <<: *solr-parallel-tests
+#    volumes:
+#      - solr-tests-6:/var/solr
+#  solr-tests-7:
+#    <<: *solr-parallel-tests
+#    volumes:
+#      - solr-tests-7:/var/solr
+#  solr-tests-8:
+#    <<: *solr-parallel-tests
+#    volumes:
+#      - solr-tests-8:/var/solr
+#  solr-tests-9:
+#    <<: *solr-parallel-tests
+#  solr-tests-10:
+#    <<: *solr-parallel-tests
+#  solr-tests-11:
+#    <<: *solr-parallel-tests
+#  solr-tests-12:
+#    <<: *solr-parallel-tests
+#  solr-tests-13:
+#    <<: *solr-parallel-tests
+#  solr-tests-14:
+#    <<: *solr-parallel-tests
+#  solr-tests-15:
+#    <<: *solr-parallel-tests
+#  solr-tests-16:
+#    <<: *solr-parallel-tests
+
+
   web:
     links:
       - solr-tests:$DDEV_HOSTNAME
@@ -64,4 +114,61 @@ volumes:
     driver_opts:
       type: none
       device: $DDEV_APPROOT/.ddev/solr/tests
+      o: bind
+
+  # for tmpfs build by paratest
+#  solr-tests-1:
+#    driver: local
+#    driver_opts:
+#      type: none
+#      device: $DDEV_APPROOT/.ddev/solr/tests-1
+#      o: bind
+#  solr-tests-2:
+#    driver: local
+#    driver_opts:
+#      type: none
+#      device: $DDEV_APPROOT/.ddev/solr/tests-2
+#      o: bind
+#  solr-tests-3:
+#    driver: local
+#    driver_opts:
+#      type: none
+#      device: $DDEV_APPROOT/.ddev/solr/tests-3
+#      o: bind
+#  solr-tests-4:
+#    driver: local
+#    driver_opts:
+#      type: none
+#      device: $DDEV_APPROOT/.ddev/solr/tests-4
+#      o: bind
+#  solr-tests-5:
+#    driver: local
+#    driver_opts:
+#      type: none
+#      device: $DDEV_APPROOT/.ddev/solr/tests-5
+#  solr-tests-6:
+#    driver: local
+#    driver_opts:
+#      type: none
+#      device: $DDEV_APPROOT/.ddev/solr/tests-6
+#      o: bind
+#  solr-tests-7:
+#    driver: local
+#    driver_opts:
+#      type: none
+#      device: $DDEV_APPROOT/.ddev/solr/tests-7
+#      o: bind
+#  solr-tests-8:
+#    driver: local
+#    driver_opts:
+#      type: none
+#      device: $DDEV_APPROOT/.ddev/solr/tests-8
+#      o: bind
+
+  mariadb-database:
+    name: "${DDEV_SITENAME}-mariadb"
+    driver: local
+    driver_opts:
+      type: none
+      device: $DDEV_APPROOT/.ddev/db-volume
       o: bind

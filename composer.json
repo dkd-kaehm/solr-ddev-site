@@ -11,6 +11,10 @@
         "0": {
             "type": "path",
             "url": "packages/*"
+        },
+        "1": {
+            "type": "vcs",
+            "url": "git@github.com:dkd-kaehm/testing-framework.git"
         }
     },
     "require": {
@@ -43,11 +47,13 @@
         "typo3-console/composer-auto-commands": "^0.4.2",
         "typo3-console/composer-typo3-auto-install": "^0.4",
         "dkd/apache-solr-for-typo3-sitepackage": "@dev",
-        "apache-solr-for-typo3/solr": "@dev"
+        "apache-solr-for-typo3/solr": "@dev",
+        "brianium/paratest": "^6.2"
     },
     "require-dev": {
-        "phpunit/phpunit": "^7 | ^8 | ^9",
-        "nimut/testing-framework": "^5 | ^6"
+        "phpunit/phpunit": "^8 | ^9",
+        "phpspec/prophecy-phpunit": "^2.0",
+        "nimut/testing-framework": "dev-update-phpunit-compatibility"
     },
     "autoload-dev": {
         "psr-4": {
