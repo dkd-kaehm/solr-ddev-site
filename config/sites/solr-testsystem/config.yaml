@@ -1,11 +1,11 @@
 rootPageId: 1
+websiteTitle: 'TYPO3-Solr Introduction'
 base: 'https://solr-ddev-site.ddev.site/'
-baseVariants: {  }
 languages:
   -
     title: English
     enabled: true
-    languageId: '0'
+    languageId: 0
     base: /
     typo3Language: default
     locale: en_US.UTF-8
@@ -18,7 +18,7 @@ languages:
   -
     title: German
     enabled: true
-    languageId: '2'
+    languageId: 2
     base: /de/
     typo3Language: de
     locale: de_DE.UTF-8
@@ -33,7 +33,7 @@ languages:
   -
     title: Dansk
     enabled: true
-    languageId: '1'
+    languageId: 1
     base: /da/
     typo3Language: da
     locale: da_DA.UTF-8
@@ -45,11 +45,18 @@ languages:
     fallbacks: '0'
     flag: dk
     solr_core_read: core_da
-errorHandling: {  }
-routes: {  }
+    websiteTitle: ''
+
+#solr_enabled_read: '%env(bool:SOLR_ENABLED_READ)%'
 solr_enabled_read: true
-solr_scheme_read: http
-solr_host_read: solr-site
-solr_port_read: 8983
-solr_path_read: /solr/
-solr_use_write_connection: false
+solr_scheme_read: '%env(SOLR_SCHEME_READ)%'
+solr_host_read: '%env(SOLR_HOST_READ)%'
+solr_port_read: '%env(SOLR_PORT_READ)%'
+solr_path_read: '%env(SOLR_PATH_READ)%'
+
+#solr_use_write_connection: '%env(bool:solr_use_write_connection)%'
+solr_use_write_connection: true
+solr_scheme_write: '%env(SOLR_SCHEME_WRITE)%'
+solr_host_write: '%env(SOLR_HOST_WRITE)%'
+solr_port_write: '%env(SOLR_PORT_WRITE)%'
+solr_path_write: '%env(SOLR_PATH_WRITE)%'
