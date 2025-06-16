@@ -1,0 +1,23 @@
+{
+  "name": "apache-solr-for-typo3/the-holy-bible",
+  "type": "typo3-cms-extension",
+  "description": "Solr development site : EXT:Solr AI - The holy Bible",
+  "homepage": "http://www.dkd.de/",
+  "license": [
+    "GPL-2.0-or-later"
+  ],
+  "keywords": [
+    "TYPO3 CMS"
+  ],
+  "require": {
+    "apache-solr-for-typo3/solr": "@dev",
+    "b13/container": "*",
+    "cobweb/external_import": "^8.1",
+    "cobweb/svconnector_feed": "^5.0"
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "the_holy_bible"
+    }
+  }
+}

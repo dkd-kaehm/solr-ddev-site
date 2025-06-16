@@ -24,7 +24,8 @@
           "apache-solr-for-typo3/solrmlt":                        "13.0",
           "apache-solr-for-typo3/tika":                           "13.0",
 
-          "dkd/apache-solr-for-typo3-sitepackage":                "13.0"
+          "dkd/apache-solr-for-typo3-sitepackage":                "13.0",
+          "apache-solr-for-typo3/the-holy-bible":                 "13.0"
         }
       }
     }
@@ -47,6 +48,7 @@
     "ext-pdo": "*",
     "ext-simplexml": "*",
     "apache-solr-for-typo3/solr": "13.0",
+    "apache-solr-for-typo3/the-holy-bible": "13.0",
     "bk2k/bootstrap-package": "^15.0.0",
     "dkd/apache-solr-for-typo3-sitepackage": "13.0",
     "helhum/typo3-console": "~8.2.2",

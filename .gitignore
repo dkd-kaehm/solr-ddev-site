@@ -10,6 +10,7 @@ nbproject
 
 !/packages/introduction_*
 !/packages/introduction_*/*
+!/packages/the_holy_bible
 /packages/*/Initialisation/not_covered_by_impexp.isImported
 
 /public/*
