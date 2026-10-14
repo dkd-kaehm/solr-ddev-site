@@ -9,6 +9,7 @@ xdebug_enabled: false
 additional_hostnames:
   - ter-solr-ddev-site
   - ter.solr-ddev-site
+  - some-branch-slug-14-0-x-with-some-bugfix-fixing-some-bad-stuff
 additional_fqdns: []
 database:
   type: mysql

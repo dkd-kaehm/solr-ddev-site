@@ -34,3 +34,5 @@ plugin.tx_solr.search.faceting.facets {
     label = Record Id
   }
 }
+
+config.forceAbsoluteUrls = 1

@@ -1,4 +1,4 @@
-base: 'https://%env(DDEV_PROJECT)%.%env(DDEV_TLD)%/'
+base: 'https://some-branch-slug-14-0-x-with-some-bugfix-fixing-some-bad-stuff.ddev.site/'
 languages:
   -
     title: English
